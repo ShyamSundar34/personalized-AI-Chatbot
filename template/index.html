@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+
+</head>
+<body>
+    <div id="inputContainer">
+        <input type="text" id="userId" placeholder="Enter ID">
+        <input type="text" id="userName" placeholder="Enter Name">
+        <button id="okButton">OK</button>
+      </div>
+      <div id="welcomeMessage"></div>
+    <h1>Welcome to the Flask AI App!</h1>
+    <p>Ask the AI to explain something:</p>
+
+    <!-- Ask AI Form -->
+    <form action="/" method="POST">
+        <label for="query">Your Query:</label>
+        <input type="text" id="query" name="query" required>
+        <button type="submit">Ask AI</button>
+    </form>
+
+    {% if response %}
+        <h2>AI Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+<script>
+    const okButton = document.getElementById('okButton');
+    const inputContainer = document.getElementById('inputContainer');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    okButton.addEventListener('click', () => {
+      const userName = document.getElementById('userName').value;
+      if (userName) {
+        inputContainer.style.display = 'none';
+        welcomeMessage.textContent = `Welcome, ${userName}!`;
+        welcomeMessage.style.display = 'block';
+      } else {
+        alert('Please enter your name!');
+      }
+    });
+</script>
+</html>
